@@ -1,3 +1,4 @@
+from email.policy import default
 from enum import unique
 from tabnanny import verbose
 from django.db import models
@@ -39,6 +40,7 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
 
     pseudo = models.CharField(max_length=50,unique=True)
+    image = models.ImageField(upload_to='user_profil/', max_length=500, default='')
     email = models.EmailField(max_length=50,unique=True)
     online = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
