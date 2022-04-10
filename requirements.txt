@@ -10,6 +10,7 @@ cryptography==36.0.2
 daphne==3.0.2
 dj-database-url==0.5.0
 Django==4.0.3
+django-cors-headers==3.11.0
 django-heroku==0.3.1
 djangorestframework==3.13.1
 hyperlink==21.0.0
