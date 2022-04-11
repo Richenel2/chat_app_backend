@@ -19,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
+    queryset = Message.objects.all().order_by('creation_date')
     serializer_class = MessageSerializer
 
 class PostMessage(APIView):
