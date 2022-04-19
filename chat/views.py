@@ -38,11 +38,11 @@ class Login(APIView):
     def post(self,request):
 
         reqBody = request.data
-        pseudo = reqBody['pseudo']
+        email = reqBody['email']
         password = reqBody['password']
         try:
 
-            user = User.objects.get(pseudo=pseudo)
+            user = User.objects.get(email=email)
         except BaseException as e:
             raise ValidationError({"message": f'{str(e)}'})
         if  not user.check_password(password):
