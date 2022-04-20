@@ -28,8 +28,8 @@ class PostMessage(APIView):
         serializer = MessageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            
-            async_to_sync(channel_layer.group_send)("mobile",{"type":"message"})
+            list = map( lambda x: MessageSerializer(x).data,Message.objects.all().order_by('creation_date')[:20])
+            async_to_sync(channel_layer.group_send)("mobile",{"type":"message","body":list})
         else :
             raise ValidationError({'message':'No valid data'})
         return Response(data)

@@ -8,7 +8,7 @@ class MobileConsumer(AsyncJsonWebsocketConsumer):
         async def connect(self):
             await self.channel_layer.group_add("mobile",self.channel_name)
             await self.accept()
-            await self.send_json(getList())
+            # await self.send_json(getList())
 
 
         async  def receive(self,text_data):
@@ -21,7 +21,7 @@ class MobileConsumer(AsyncJsonWebsocketConsumer):
            )      
     
         async def message(self,event):
-          await self.send_json(getList())
+          await self.send_json(event['body'])
         
 def getList():
   return map( lambda x: MessageSerializer(x).data,Message.objects.all().order_by('creation_date')[:20])
