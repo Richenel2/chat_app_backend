@@ -1,4 +1,5 @@
 from email import message
+from typing import List
 from rest_framework import viewsets
 from rest_framework.serializers import ValidationError
 from rest_framework.views import APIView
@@ -28,7 +29,7 @@ class PostMessage(APIView):
         serializer = MessageSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            list = map( lambda x: MessageSerializer(x).data,Message.objects.all().order_by('creation_date')[:20])
+            list = List(map( lambda x: MessageSerializer(x).data,Message.objects.all().order_by('creation_date')[:20]))
             async_to_sync(channel_layer.group_send)("mobile",{"type":"message","body":list})
         else :
             raise ValidationError({'message':'No valid data '})
