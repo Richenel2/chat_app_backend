@@ -11,11 +11,11 @@
 
     <script>
 
-        var socket = new WebSocket('ws://localhost:8000/mobile/');
+        var socket = new WebSocket('ws://kayrachat.herokuapp.com/mobile/');
         socket.onmessage = function (event){
             var data = JSON.parse(event.data)
             console.log(data)
-            document.getElementById('app').innerHTML=data.message;
+            document.getElementById('app').innerHTML=data;
         }
 
     </script>
