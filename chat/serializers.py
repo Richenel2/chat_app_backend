@@ -17,5 +17,5 @@ class UserSerializer(serializers.ModelSerializer):
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Message.objects.order_by('creation_date')
+        model = Message.objects.order_by('-creation_date')
         fields = '__all__'
