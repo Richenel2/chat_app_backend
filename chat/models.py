@@ -65,3 +65,7 @@ class Message (models.Model):
     creator_id = models.ForeignKey(to=User, on_delete=models.CASCADE)
     message = models.CharField(max_length=500)
     creation_date = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+
+        ordering = ['-creation_date']
